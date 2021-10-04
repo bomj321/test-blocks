@@ -36,14 +36,15 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ npm run start        //FOR DEFAULT USE THE .env FILE
 
 # watch mode
-$ npm run start:dev
+$ npm run start:dev    //FOR DEFAULT USE THE .env FILE
 
 # production mode
-$ npm run start:prod
+$ npm run start:prod   //FOR THIS YOU NEED A .prod.env FILE
 ```
+
 
 ## Test
 
@@ -71,3 +72,58 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Commands to run migrations
+
+- npm run migrations:generate --n "FLAG"
+- npm run migrations:run
+- npm run migrations:show
+
+## If you will use docker, use this command to install images
+- docker-compose up -d
+- docker-compose down
+
+## Others specials commands
+- docker-compose ps
+- docker inspect //GET IP ADDRESS to use PGADMIN IF you will use POSTGRESS
+- docker-compose down
+
+- npm run execute create-characters  //COMMAND TO POPULATE TABLE CHARACTERS
+- npm run execute create-locations  //COMMAND TO POPULATE TABLE LOCATIONS
+- npm run execute create-user-admin  //COMMAND TO CREATE AN ADMIN USER
+
+
+## What more do you need?
+
+## .env file
+
+DATABASE_NAME=my_db_vertebra
+DATABASE_PORT=3306
+JWT_SECRET=xxxx
+
+POSTGRES_DB=my_db_vertebra
+POSTGRES_USER=root
+POSTGRES_PASSWORD=123456
+POSTGRES_PORT=5432
+POSTGRES_HOST=localhost
+
+
+MYSQL_DATABASE=my_db_vertebra
+MYSQL_USER=root
+MYSQL_ROOT_PASSWORD=123456
+MYSQL_PORT=3306
+MYSQL_HOST=localhost
+
+TYPEORM_CONNECTION = postgres
+TYPEORM_HOST = localhost
+TYPEORM_USERNAME = root
+TYPEORM_PASSWORD = 123456
+TYPEORM_DATABASE = my_db_vertebra
+TYPEORM_PORT = 5432
+TYPEORM_SYNCHRONIZE = false
+TYPEORM_LOGGING = true
+TYPEORM_ENTITIES = src/**/*.entity.ts
+
+TYPEORM_MIGRATIONS = src/database/migrations/*.ts
+TYPEORM_MIGRATIONS_DIR = src/database/migrations
+TYPEORM_MIGRATIONS_TABLE_NAME = migrations
