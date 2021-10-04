@@ -2,9 +2,11 @@ import {
   IsString,
   IsNotEmpty,
   IsNumber,
-  IsArray
+  IsArray,
+  IsOptional,
+  Min
 } from 'class-validator';
-import { PartialType } from '@nestjs/swagger';
+import { PartialType, OmitType } from '@nestjs/swagger';
 
 export class CreateMovieDto {
 
@@ -36,5 +38,20 @@ export class CreateMovieDto {
   date: Date;
 }
 
-export class UpdateMovieDto extends PartialType(CreateMovieDto) { }
+export class UpdateMovieDto extends PartialType(
+  OmitType(CreateMovieDto, ['userLikes']),  // 👈 implement OmitType
+) { }
+
+
+export class PaginationParams {
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  page?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(1)
+  pageSize?: number;
+}
 

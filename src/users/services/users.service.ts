@@ -13,10 +13,6 @@ export class UsersService {
     @InjectModel(User.name) private userModel: Model<User>,
   ) { }
 
-  findAll() {
-    return this.userModel.find().exec();
-  }
-
   async findOne(id: string) {
     return this.userModel.findById(id);
   }
@@ -42,13 +38,5 @@ export class UsersService {
     return this.userModel.findOne({ email }).exec();
   }
 
-  update(id: string, changes: UpdateUserDto) {
-    return this.userModel
-      .findByIdAndUpdate(id, { $set: changes }, { new: true })
-      .exec();
-  }
 
-  remove(id: string) {
-    return this.userModel.findByIdAndDelete(id);
-  }
 }

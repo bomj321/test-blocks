@@ -1,8 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import * as mongoosePaginate from 'mongoose-paginate-v2';
-
 import { User } from './user.entity';
+
+import * as mongoosePaginate from 'mongoose-paginate';
+
 
 @Schema({ versionKey: false })
 export class Movie extends Document {
@@ -22,6 +23,7 @@ export class Movie extends Document {
   @Prop({ type: Date })
   date: Date;
 
+
   @Prop({ type: Array })
   userLikes: string[];
 
@@ -35,4 +37,6 @@ export class Movie extends Document {
   user: User | Types.ObjectId;
 }
 
-export const MovieSchema = SchemaFactory.createForClass(Movie);
+export const MovieSchema = SchemaFactory.createForClass(Movie).plugin(mongoosePaginate);
+
+

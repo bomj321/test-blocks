@@ -7,7 +7,8 @@ import {
   Body,
   Put,
   Delete,
-  UseGuards
+  UseGuards,
+  Query
 } from '@nestjs/common';
 import { Request } from 'express';
 
@@ -15,7 +16,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { Public } from '../../auth/decorators/public.decorator';
 import { MoviesService } from '../services/movies.service';
-import { CreateMovieDto, UpdateMovieDto } from '../dtos/movie.dto';
+import { CreateMovieDto, UpdateMovieDto, PaginationParams } from '../dtos/movie.dto';
 import { PayloadToken } from 'src/auth/models/token.model';
 
 @UseGuards(JwtAuthGuard)
@@ -25,24 +26,23 @@ export class MoviesController {
   constructor(private moviesService: MoviesService) { }
 
   @Get()
-  findAll(@Req() req: Request) {
+  findAll(@Req() req: Request, @Query() { page, pageSize }: PaginationParams) {
     const user = req.user as PayloadToken;
-    return this.moviesService.findAll(user.sub);
+    return this.moviesService.findAll(user.sub, page, pageSize);
   }
 
   @Public()
   @Get('/public')
-  findAllPublic(@Req() req: Request) {
+  findAllPublic(@Query() { page, pageSize }: PaginationParams) {
 
-    return this.moviesService.findAllPublic(req.query);
+    return this.moviesService.findAllPublic(page, pageSize);
   }
 
   @Get('/public/liked-by-me')
-  findAllPublicLikedByMe(@Req() req: Request) {
+  findAllPublicLikedByMe(@Req() req: Request, @Query() { page, pageSize }: PaginationParams) {
     const user = req.user as PayloadToken;
-    return this.moviesService.findAllPublicLikedByMe(user.sub);
+    return this.moviesService.findAllPublicLikedByMe(user.sub, page, pageSize);
   }
-
 
   @Get(':id')
   get(@Req() req: Request, @Param('id') id: string) {

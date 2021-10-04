@@ -1,61 +1,40 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { PaginateModel } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import {
-  PaginateModel
-} from 'mongoose';
-
 import { Movie } from '../entities/movie.entity';
 import { CreateMovieDto, UpdateMovieDto } from '../dtos/movie.dto';
-
-
 
 @Injectable()
 export class MoviesService {
   constructor(
-    @InjectModel(Movie.name) private movieModel: Model<Movie>
+    @InjectModel(Movie.name) private movieModel: PaginateModel<Movie>
   ) { }
 
-  findAll(user: string) {
-    return this.movieModel.find({ user: user }).exec(); //.populate('user', "-password")
+  findAll(user: string, page = 1, pageSize = 5) {
+    return this.movieModel.paginate({ user: user }, {
+      page: !page ? 1 : page,
+      limit: !pageSize ? 5 : pageSize
+    });
   }
 
-  findAllPublic(pagination) {
-
-    let page;
-    let pageSize;
-
-    if (!pagination.page) {
-      page = 1
-    } else {
-      page = pagination.page;
-    }
-
-    if (!pagination.pageSize) {
-      pageSize = 1
-    } else {
-      pageSize = pagination.pageSize;
-    }
-
-
-    let options = {
-      sort: {
-        date: -1,
-      },
-      limit: pageSize,
-      page: page,
-    };
-
-    return false
+  findAllPublic(page = 1, pageSize = 5) {
+    return this.movieModel.paginate({ public: true }, {
+      page: !page ? 1 : page,
+      limit: !pageSize ? 5 : pageSize
+    });
 
   }
 
-  findAllPublicLikedByMe(user) {
-    return this.movieModel.find({ public: true, userLikes: user }).exec();
+  findAllPublicLikedByMe(user, page = 1, pageSize = 5) {
+    return this.movieModel.paginate({ public: true, userLikes: user }, {
+      page: !page ? 1 : page,
+      limit: !pageSize ? 5 : pageSize
+    });
+
   }
 
   async findOne(id: string, user: string) {
-    return this.movieModel.find({ _id: id, user: user });
+    return this.movieModel.find({ _id: id, user: user }).populate('user', "-password");
   }
 
   create(data: CreateMovieDto, user: string) {
