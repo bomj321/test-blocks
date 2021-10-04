@@ -17,7 +17,7 @@ export class UsersController {
   constructor(private usersService: UsersService) { }
 
   @ApiOperation({
-    summary: 'Email must be unique and the password minimum with 10 digits, at the last one upper case, lower case, digit and special character',
+    summary: 'Email must be unique and the password minimum with 10 digits, at the last one upper case, lower case, digit and special character ( !, @, #, ? or ])',
   })
   @Public()
   @Post()

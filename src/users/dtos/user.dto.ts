@@ -9,7 +9,7 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  @Matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/, { message: 'The password length must be minimun of 10 digits and at the last one upper case, lower case, digit and special character (#?!@$%^&*-)' })
+  @Matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#?\]]).{10,}$/, { message: 'The password length must be minimun of 10 digits and at the last one upper case, lower case, digit and special character (!@#?])' })
   @ApiProperty({ description: "the user' password", deprecated: true })
   readonly password: string;
 }
