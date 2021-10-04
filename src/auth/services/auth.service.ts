@@ -27,7 +27,7 @@ export class AuthService {
   generateJWT(user: User) {
     const payload: PayloadToken = { sub: user.id };
     return {
-      access_token: this.jwtService.sign(payload, { expiresIn: '60m' })
+      access_token: this.jwtService.sign(payload, { expiresIn: '20m' })
     };
   }
 }
