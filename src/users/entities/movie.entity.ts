@@ -20,9 +20,8 @@ export class Movie extends Document {
   @Prop({ required: true })
   entranceCost: Number;
 
-  @Prop({ type: Date })
-  date: Date;
-
+  @Prop({ type: String })
+  date: String;
 
   @Prop({ type: Array })
   userLikes: string[];

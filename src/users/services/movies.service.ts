@@ -81,7 +81,6 @@ export class MoviesService {
   }
 
 
-
   async remove(id: string, user: string) {
 
     const movieSaved = await this.movieModel.find({ _id: id, user: user })
@@ -92,6 +91,11 @@ export class MoviesService {
     } else {
       throw new NotFoundException(`Movie #${id} not found`);
     }
-
   }
+
+
+  async removePublicElementsByUser(user: string) {
+    return this.movieModel.deleteMany({ user: user });
+  }
+
 }

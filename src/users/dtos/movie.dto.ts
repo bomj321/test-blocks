@@ -35,11 +35,13 @@ export class CreateMovieDto {
   userLikes: string[];
 
   @IsNotEmpty()
-  date: Date;
+  date: String;
 }
 
+
+
 export class UpdateMovieDto extends PartialType(
-  OmitType(CreateMovieDto, ['userLikes']),  // 👈 implement OmitType
+  OmitType(CreateMovieDto, ['like', 'userLikes']),
 ) { }
 
 
