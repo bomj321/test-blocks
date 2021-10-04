@@ -26,6 +26,11 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+
+- LINK to Prod test: [Prod-Example](https://yudhapage.space/nestjs)
+- LINK in local: http://localhost:3001
+
+
 ## Installation
 
 ```bash
@@ -69,9 +74,6 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](LICENSE).
 
 ## Others specials commands
-- LINK to Prod test: https://yudhapage.space/nestjs
-- LINK in local: http://localhost:3001
-
 - docker-compose ps
 - docker inspect //GET IP ADDRESS to use PGADMIN IF you will use POSTGRESS
 - docker-compose down
