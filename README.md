@@ -74,11 +74,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](LICENSE).
 
 ## Others specials commands
-- docker-compose ps
-- docker inspect //GET IP ADDRESS to use PGADMIN IF you will use POSTGRESS
-- docker-compose down
-
-- npm run execute create-user-movies  //COMMAND TO CREATE ONE USER AND 2 PUBLIC MOVIES
+- npm run execute create-user-movies  //COMMAND TO CREATE ONE USER AND 20 PUBLIC MOVIES
 - To see the documentation in local you must need see: http://localhost:3001/docs/
 - To see the documentation in prod you must need see: https://yudhapage.space/nestjs/tools/docs/
 
