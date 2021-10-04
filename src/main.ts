@@ -22,7 +22,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
+  SwaggerModule.setup('/nestjs/docs', app, document);
   await app.listen(5000);
 }
 bootstrap();
