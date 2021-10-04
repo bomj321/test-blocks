@@ -33,8 +33,8 @@ export class MoviesService {
 
   }
 
-  async findOne(id: string, user: string) {
-    return this.movieModel.find({ _id: id, user: user }).populate('user', "-password");
+  async findOne(id: string) {
+    return this.movieModel.find({ _id: id }).populate('user', "-password");
   }
 
   create(data: CreateMovieDto, user: string) {

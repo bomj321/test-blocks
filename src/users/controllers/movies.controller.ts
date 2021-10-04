@@ -56,9 +56,8 @@ export class MoviesController {
     summary: 'Get one movie created for you'
   })
   @Get(':id')
-  get(@Req() req: Request, @Param('id') id: string) {
-    const user = req.user as PayloadToken;
-    return this.moviesService.findOne(id, user.sub);
+  get(@Param('id') id: string) {
+    return this.moviesService.findOne(id);
   }
 
   @ApiOperation({ summary: 'Create a movie' })
